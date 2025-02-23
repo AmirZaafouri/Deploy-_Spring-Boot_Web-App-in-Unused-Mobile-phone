@@ -75,9 +75,9 @@ cd your-repo
 ```
 
 Build the project:
-
+Without sudo, you will get an error because it requires changes (updating, deleting, or adding dependencies)
 ```bash
-mvn clean package
+sudo mvn clean package
 ```
 
 Run the application:
