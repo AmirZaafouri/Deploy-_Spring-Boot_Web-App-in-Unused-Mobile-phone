@@ -24,9 +24,9 @@ public class OpenAPIConfig {
     }
 
     public Contact contactAPI() {
-        return new Contact().name("TEAM ASI II")
-                .email("ons.bensalah@esprit.tn")
-                .url("https://www.linkedin.com/in/ons-ben-salah-24b73494/");
+        return new Contact().name("Software Engineer")
+                .email("zaafouri.amir@esprit.tn")
+                .url("https://amirzaafouri.github.io/");
     }
 
 
