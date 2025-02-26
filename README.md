@@ -70,8 +70,8 @@ exit
 Clone or upload your Spring Boot project inside UserLAnd:
 
 ```bash
-git clone https://github.com/your-repo.git
-cd your-repo
+git clone https://github.com/AmirZaafouri/Deploy-_Spring-Boot_Web-App-in-Unused-Mobile-phone
+cd Deploy-_Spring-Boot_Web-App-in-Unused-Mobile-phone
 ```
 
 Build the project:
