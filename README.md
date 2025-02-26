@@ -99,7 +99,7 @@ ip a | grep inet
 Access the application from any device connect to the same Network with browser:
 
 ```
-http://@IP_phone:8080
+http://@IP_phone:8088
 ```
 
 If needed, check running processes and ports:
