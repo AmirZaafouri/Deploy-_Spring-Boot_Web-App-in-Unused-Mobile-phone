@@ -126,7 +126,7 @@ netstat -tulnp
 
 ## Conclusion
 
-You have successfully deployed a Spring Boot + MySQL application on UserLAnd Ubuntu. 🎉 If you have any issues or improvements, feel free to contribute or raise an issue in this repository!
+we have successfully deployed a Spring Boot + MySQL application on UserLAnd Ubuntu. 🎉 If you have any issues or improvements, feel free to contribute or raise an issue in this repository!
 
 🚀 Happy Coding!
 
