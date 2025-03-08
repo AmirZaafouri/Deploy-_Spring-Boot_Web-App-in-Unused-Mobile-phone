@@ -1,0 +1,26 @@
+name: CI/CD for Mobile
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Build Application
+        run: |
+          mvn clean package
+
+      - name: Deploy to Mobile Phone via SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          echo "$SSH_KEY" > deploy_key && chmod 600 deploy_key
+          scp -o StrictHostKeyChecking=no -i deploy_key target/your-app.jar user@your-mobile-ip:/home/user/
+          ssh -o StrictHostKeyChecking=no -i deploy_key user@your-mobile-ip "nohup java -jar /home/user/your-app.jar > app.log 2>&1 &"
