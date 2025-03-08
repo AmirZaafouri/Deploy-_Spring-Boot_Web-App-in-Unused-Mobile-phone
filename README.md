@@ -9,6 +9,38 @@ This guide explains how to set up and deploy a Spring Boot application with MySQ
 - A Spring Boot application with a Maven build structure.
 
 ---
+## 💡. You Can setup Acess SSH for easy use of cmd
+install openssh-server in your ubuntu in mobile phone:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install openssh-server -y
+```
+change port of ssh access because will create some conflict with userland Session 🙂:
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+Change this line:
+```bash
+Port 22
+```
+to:
+```bash
+Port 2222
+```
+Then restart SSH:
+```bash
+sudo service ssh restart
+```
+start ssh service :
+```bash
+sudo service ssh start
+```
+# Connect to SSH from Your PC
+On your PC, open a terminal (Linux/macOS) or PowerShell (Windows) and run:
+```bash
+ssh -p 2222 username@IP_phone
+```
 
 ## 1. Install Required Packages
 
