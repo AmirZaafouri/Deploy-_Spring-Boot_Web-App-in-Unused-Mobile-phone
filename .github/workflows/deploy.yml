@@ -21,6 +21,18 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
-          echo "$SSH_KEY" > deploy_key && chmod 600 deploy_key
-          scp -o StrictHostKeyChecking=no -i deploy_key target/your-app.jar user@your-mobile-ip:/home/user/
-          ssh -o StrictHostKeyChecking=no -i deploy_key user@your-mobile-ip "nohup java -jar /home/user/your-app.jar > app.log 2>&1 &"
+          # Create deploy key from GitHub secret
+          echo "$SSH_KEY" > deploy_key
+          chmod 600 deploy_key
+
+          # Define JAR filename
+          JAR_FILE="gestion-station-ski-1.0.jar"
+
+          # SCP the JAR file to the mobile device
+          scp -o StrictHostKeyChecking=no -i deploy_key target/$JAR_FILE userland@192.168.100.4:/home/userland/
+
+          # Run the Spring Boot application in the background on the mobile device
+          ssh -o StrictHostKeyChecking=no -i deploy_key userland@192.168.100.4 "nohup java -jar /home/userland/$JAR_FILE > app.log 2>&1 &"
+
+          # Clean up the deploy key for security
+          rm deploy_key
