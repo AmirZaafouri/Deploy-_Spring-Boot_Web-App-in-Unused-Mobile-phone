@@ -1,4 +1,4 @@
-# Deploying Spring Boot + MySQL on Android phone Unused phone
+# Deploying Spring Boot + MySQL on Unused phone
 
 This guide explains how to set up and deploy a Spring Boot application with MySQL on an Ubuntu environment running inside UserLAnd on an Android device.
 
