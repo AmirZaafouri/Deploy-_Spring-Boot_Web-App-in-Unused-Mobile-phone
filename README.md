@@ -157,8 +157,7 @@ netstat -tulnp
 ---
 ## 📡. For Free Domain i found this Free website is fetch best for me (to generate free domain and put in cloudflare for exemple)
 
-[  netstat -tulnp](https://dash.domain.digitalplat.org/domain_check?name=amir.api.com)
----
+[  Free - Domain](https://dash.domain.digitalplat.org/domain_check?name=amir.api.com)
 
 ## Conclusion
 
