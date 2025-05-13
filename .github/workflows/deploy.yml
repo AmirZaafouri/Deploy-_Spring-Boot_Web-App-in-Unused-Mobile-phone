@@ -17,7 +17,7 @@ jobs:
         run: |
           mvn clean package -DskipTests
 
-      - name: Deploy to Mobile Phone via SSH
+      - name: Deploy to Azure VM via SSH
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
@@ -25,14 +25,14 @@ jobs:
           echo "$SSH_KEY" > deploy_key
           chmod 600 deploy_key
           
-          # Define JAR filename
+          # Define the JAR file name
           JAR_FILE="gestion-station-ski-1.0.jar"
           
-          # SCP the JAR file to the mobile device using port 2022
-          scp -o StrictHostKeyChecking=no -i deploy_key -P 2022 target/$JAR_FILE userland@192.168.100.4:/home/userland/
+          # SCP the JAR file to the Azure VM (replace with your VM's public IP)
+          scp -o StrictHostKeyChecking=no -i deploy_key -P 22 target/$JAR_FILE azureuser@20.253.215.72:/home/azureuser/
           
-          # Run the Spring Boot application in the background on the mobile device using port 2022
-          ssh -o StrictHostKeyChecking=no -i deploy_key -p 2022 userland@192.168.100.4 "nohup java -jar /home/userland/$JAR_FILE > app.log 2>&1 &"
+          # Run the Spring Boot application in the background on the Azure VM
+          ssh -o StrictHostKeyChecking=no -i deploy_key -p 22 azureuser@20.253.215.72 "nohup java -jar /home/azureuser/$JAR_FILE > app.log 2>&1 &"
           
           # Clean up the deploy key for security
           rm deploy_key
