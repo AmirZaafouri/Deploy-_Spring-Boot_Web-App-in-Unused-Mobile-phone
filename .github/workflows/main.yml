@@ -1,0 +1,38 @@
+name: CI/CD for VM Azure Devops
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Build Application (Skip Tests)
+        run: |
+          mvn clean package -DskipTests
+
+      - name: Deploy to Azure VM via SSH
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          # Create deploy key from GitHub secret
+          echo "$SSH_KEY" > deploy_key
+          chmod 600 deploy_key
+          
+          # Define the JAR file name
+          JAR_FILE="gestion-station-ski-1.0.jar"
+          
+          # SCP the JAR file to the Azure VM (replace with your VM's public IP)
+          scp -o StrictHostKeyChecking=no -i deploy_key -P 22 target/$JAR_FILE azureuser@20.253.215.72:/home/azureuser/
+          
+          # Run the Spring Boot application in the background on the Azure VM
+          ssh -o StrictHostKeyChecking=no -i deploy_key -p 22 azureuser@20.253.215.72 "nohup java -jar /home/azureuser/$JAR_FILE > app.log 2>&1 &"
+          
+          # Clean up the deploy key for security
+          rm deploy_key
